@@ -262,6 +262,9 @@ text{
 }
 .Button_Ytransform{
   transition: .2s all ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .Button_Ytransform:hover{
   transform: translateY(-6px);
@@ -317,4 +320,12 @@ text{
 }
 .social_icon_div:hover .social_icon{
   color: rgb(251, 62, 62);
+}
+
+.text-orange {
+  color: #fb3e3e !important
+}
+
+.headerAltLi:hover {
+  color: #fb3e3e !important
 }

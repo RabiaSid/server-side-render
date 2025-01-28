@@ -1,10 +1,14 @@
+import React from "react";
+import AppRoute from './route/route';
+import AppLayout from './components/layout/index'
 import './App.css';
-import AppHome from './pages/home';
 
 function App() {
   return (
     <div className="App">
-      <AppHome />
+      <AppLayout>
+        <AppRoute />
+      </AppLayout>
     </div>
   );
 }

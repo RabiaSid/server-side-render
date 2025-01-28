@@ -3,9 +3,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import React, { useState, useEffect } from "react";
 import AppButton from "../button";
+import { useLocation } from "react-router-dom";
 
 function AppHeader() {
   const [colorChange, setColorchange] = useState(false);
+  const location = useLocation();
 
   const changeNavbarColor = () => {
     if (window.scrollY >= 600) {
@@ -20,7 +22,7 @@ function AppHeader() {
     return () => {
       window.removeEventListener("scroll", changeNavbarColor);
     };
-  }, []); // Adding an empty dependency array ensures the event listener is added and removed properly
+  }, []);
 
   const handleResize = () => {
     if (window.innerWidth < 992) {
@@ -36,15 +38,9 @@ function AppHeader() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  // const [colorChange, setColorchange] = useState(false);
-  // const changeNavbarColor = () => {
-  //   if (window.scrollY >= 700 ) {
-  //     setColorchange(true);
-  //   } else {
-  //     setColorchange(false);
-  //   }
-  // };
-  // window.addEventListener("scroll", changeNavbarColor);
+
+  const isHomePage = location.pathname === "/";
+
   return (
     <>
       <Navbar
@@ -54,27 +50,28 @@ function AppHeader() {
         variant={colorChange ? "dark" : "light"}
       >
         <Container>
-          <Navbar.Brand href="#home" className="text-white fs-3 fw-bolder" >Navbar</Navbar.Brand>
+          <Navbar.Brand href="/" className={`fs-3 fw-bolder ${isHomePage ? "text-white" : "text-orange"
+            }`} >Navbar</Navbar.Brand>
           <Navbar.Toggle
             aria-controls="responsive-navbar-nav "
             style={{ borderColor: colorChange ? "#fff" : "#000" }}
           />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto ps-lg-auto ps-5">
-              <Nav.Link href="#home" className="px-3" >Home</Nav.Link>
-              <Nav.Link href="#service" className="px-3">Service</Nav.Link>
-              <Nav.Link href="#features" className="px-3">Features</Nav.Link>
-              <Nav.Link href="#pricing" className="px-3">Pricing</Nav.Link>
-              <Nav.Link href="#team" className="px-3">Team</Nav.Link>
-              <Nav.Link href="#blog" className="px-3">Blog</Nav.Link>
-              <Nav.Link href="#contact" className="px-3">Contact</Nav.Link>
+              <Nav.Link href="/" className={!isHomePage ? "headerAltLi px-3" : "px-3"} >Home</Nav.Link>
+              <Nav.Link href="/service" className={!isHomePage ? "headerAltLi px-3" : "px-3"}>Service</Nav.Link>
+              <Nav.Link href="/feature" className={!isHomePage ? "headerAltLi px-3" : "px-3"}>Features</Nav.Link>
+              <Nav.Link href="/pricing" className={!isHomePage ? "headerAltLi px-3" : "px-3"}>Pricing</Nav.Link>
+              <Nav.Link href="/team" className={!isHomePage ? "headerAltLi px-3" : "px-3"}>Team</Nav.Link>
+              <Nav.Link href="/blog" className={!isHomePage ? "headerAltLi px-3" : "px-3"}>Blog</Nav.Link>
+              <Nav.Link href="/contact" className={!isHomePage ? "headerAltLi px-3" : "px-3"}>Contact</Nav.Link>
             </Nav>
             <Nav>
-              <AppButton title="Try it Free" 
-              borderRadius={'35px'}
-              backgroundColor={"#fb3e3e"}
-              color={"#ffffff"}
-              height={'8vh'}
+              <AppButton title="Try it Free"
+                borderRadius={'35px'}
+                backgroundColor={"#fb3e3e"}
+                color={"#ffffff"}
+                height={'50px'}
               />
             </Nav>
           </Navbar.Collapse>

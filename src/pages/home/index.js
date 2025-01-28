@@ -1,6 +1,4 @@
-import React from 'react'
-
-import AppLayout from '../../components/layout'
+import React, { Suspense } from "react";
 import HomeSectionOne from '../../section/Home-Section-1'
 import HomeSectionTwo from '../../section/Home-Section-2'
 import HomeSectionThree from '../../section/Home-Section-3'
@@ -13,21 +11,33 @@ import HomeSectionNine from '../../section/Home-Section-9'
 import HomeSectionTen from '../../section/Home-Section-10'
 import HomeSectionEleven from '../../section/Home-Section-11'
 
+
+const HomeModule = React.lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 2000)).then(() =>
+    import("../../components/seo/homeModule")
+  );
+});
+
+
 const AppHome = () => {
   return (
-    <AppLayout>
-    <HomeSectionOne />
-    <HomeSectionTwo />
-    <HomeSectionThree />
-    <HomeSectionFour />
-    <HomeSectionfive />
-    <HomeSectionSix />
-    <HomeSectionSeven />
-    <HomeSectionEight />
-    <HomeSectionNine />
-    <HomeSectionTen />
-    <HomeSectionEleven />
-    </AppLayout>
+
+    <>
+      <HomeSectionOne />
+      <HomeSectionTwo />
+      <HomeSectionThree />
+      <HomeSectionFour />
+      <HomeSectionfive />
+      <HomeSectionSix />
+      <HomeSectionSeven />
+      <HomeSectionEight />
+      <HomeSectionNine />
+      <HomeSectionTen />
+      <HomeSectionEleven />
+      <Suspense fallback={<p>Loading...</p>}>
+        <HomeModule />
+      </Suspense>
+    </>
   )
 }
 

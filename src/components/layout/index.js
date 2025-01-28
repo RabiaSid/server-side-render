@@ -1,10 +1,10 @@
-
+import React from 'react';
 import { Layout } from "antd";
 import AppHeader from "../header";
 import AppFooter from "../footer";
 
 const { Header, Footer, Content } = Layout;
-function AppLayout({children}) {
+function AppLayout({ children }) {
   return (
     <Layout>
       <Header
@@ -14,12 +14,12 @@ function AppLayout({children}) {
           width: "auto",
           height: "auto",
           backgroundColor: `rgba(0, 0, 0, 0)`,
-          
+
         }}
         className="fixed-top"
       >
-        <AppHeader  />
-        
+        <AppHeader />
+
       </Header>
       <Content
         style={{
@@ -31,7 +31,7 @@ function AppLayout({children}) {
         }}
         className=""
       >
-        
+
         {children}
       </Content>
 
@@ -55,12 +55,12 @@ function AppLayout({children}) {
     //         width: "auto",
     //         height: "auto",
     //         backgroundColor: `rgba(0, 0, 0, 0)`,
-            
+
     //       }}
     //       className="position-sticky fixed-top"
     //     >
     //       <AppHeader  />
-          
+
     //     </Header>
     //     <Content
     //       style={{
@@ -87,7 +87,7 @@ function AppLayout({children}) {
     //       <AppFooter />
     //     </Footer>
     //   </Layout>
-    
+
   )
 }
 
